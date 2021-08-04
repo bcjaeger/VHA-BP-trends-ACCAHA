@@ -1,0 +1,41 @@
+---
+title: "Untitled Draft"
+author: "Report Author"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  officedown::rdocx_document:
+    mapstyles:
+      Normal: ['First Paragraph']
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = FALSE)
+
+library(officedown)
+library(officer)
+
+source(here::here("packages.R"))
+
+tar_load(tbl_pr)
+
+```
+
+<!---BLOCK_LANDSCAPE_START--->
+
+Table 1: caption here
+
+```{r}
+tbl_pr$main
+```
+
+\newpage
+
+Table 2: caption here
+
+```{r}
+tbl_pr$wtd
+```
+
+<!---BLOCK_LANDSCAPE_STOP--->
+
