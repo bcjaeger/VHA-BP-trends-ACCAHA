@@ -20,11 +20,6 @@ load_vha <- function(fpath) {
         sex,
         levels = c("male", "female")
       ),
-      cohort_grp = factor(
-        cohort %in% c(1,2,3), 
-        levels = c(TRUE, FALSE), 
-        labels = c('pre_accaha', 'post_accaha')
-      ),
       across(where(is.character), as.factor)
     )
 

@@ -83,7 +83,11 @@ cohort_bind <- function(...){
       bp_sys_postindex_mmhg = bp_sys_postindex_mmhg + cohort/4,
       bp_dia_preindex_mmhg = bp_dia_preindex_mmhg - cohort/8,
       bp_dia_postindex_mmhg = bp_dia_postindex_mmhg + cohort/8,
-      
+      cohort_grp = factor(
+        cohort %in% c(1,2,3), 
+        levels = c(TRUE, FALSE), 
+        labels = c('pre_accaha', 'post_accaha')
+      ),
       # interaction b/t PDC and ACC AHA BP guideline for BP control
       bp_sys_postindex_mmhg = case_when(
         cohort_grp == 'pre_accaha' & pdc == 'high' ~ bp_sys_postindex_mmhg - 12,

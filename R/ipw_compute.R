@@ -18,6 +18,8 @@ ipw_compute <- function(formula, data){
   .x_data <- data[, formula_get_predictor_vars(.formula)]
   
   .x_preprocessor <- recipe(~., data = .x_data) %>% 
+    step_indicate_na(contains("preindex"),
+                     age_years, sex, race) %>% 
     step_impute_mean(all_numeric()) %>% 
     step_impute_mode(all_nominal()) %>% 
     step_dummy(all_nominal()) %>% 
