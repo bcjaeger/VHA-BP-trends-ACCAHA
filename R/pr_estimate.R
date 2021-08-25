@@ -45,6 +45,8 @@ make_pr_estimates <- function(data, y, x_main, x_group, x_control, w){
                 values_from = value,
                 names_prefix = 'prev_')
   
+  browser()
+  
   mdl_estimates <- grid %>% 
     mutate(
       pr_estimates = map2(
@@ -87,6 +89,10 @@ pr_estimate_ <- function(data, y, x_main, x_group, x_control, w=NULL){
   formula <- as.formula(glue("{y} ~ {x_group} * {x_main} + {x_cc}"))
   
   if(is.null(w)) w <- rep(1, nrow(data))
+  
+  keep_index <- complete.cases(data)
+  data <- data[keep_index,]
+  w <- w[keep_index]
   
   fit <- geeglm(formula = formula,
                 data = data,
